@@ -46,7 +46,7 @@ function AddTickets(){
     };
     
     xmlhttp.open('POST', 'http://localhost:8080/PROJECT1/Client/AddingTicket');
-    xmlhttp.send();
+    xmlhttp.send(JSON.stringify(AddTicket));
 };
 
 
@@ -108,3 +108,8 @@ for (let i = 0; i < Ticket.length; i++) {
 
 }
 
+	let AddTicket = {
+        "reimb_AMOUNT": document.getElementById("Amount").value,
+        "reimb_DESCRIPTION": document.getElementById("description").value,
+		"reimb_TYPE_ID": document.getElementById("TypeID").value
+    };

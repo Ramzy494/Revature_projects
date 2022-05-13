@@ -4,12 +4,15 @@ import java.sql.Timestamp;
 
 public class ERS_REIMBURSEMENT_MODEL {
 	int REIM_ID;
-	  int REIMB_AMOUNT;
+	int REIMB_AMOUNT;
 	Timestamp REIMB_SUBMITTED;
 	Timestamp REIMB_RESOLVED;
 	String REIMB_DESCRIPTION;
 	static int REIMB_AUTHOR;
 	int REIMB_RESOLVER;
+	int REIMB_STATUS_ID;
+	int REIMB_TYPE_ID;
+	
 	
 	
 	 public ERS_REIMBURSEMENT_MODEL(int rEIM_ID, int rEIMB_STATUS_ID) {
@@ -17,8 +20,6 @@ public class ERS_REIMBURSEMENT_MODEL {
 		REIM_ID = rEIM_ID;
 		REIMB_STATUS_ID = rEIMB_STATUS_ID;
 	}
-	int REIMB_STATUS_ID;
-	int REIMB_TYPE_ID;
 	
 	
 	 public ERS_REIMBURSEMENT_MODEL(int rEIM_ID, int rEIMB_AMOUNT, String rEIMB_DESCRIPTION) {

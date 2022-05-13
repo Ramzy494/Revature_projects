@@ -101,7 +101,11 @@ function updateTicket() {
     let updatedTicket = {
         "reim_ID": document.getElementById("ID").value,
         "reimb_STATUS_ID": document.getElementById("TypeID").value
-    }
+		
+	}
+
+    
+	console.log(updateTicket);
     xhttp.send(JSON.stringify(updatedTicket));
 }
 

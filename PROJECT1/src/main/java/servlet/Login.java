@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 
 	if(UserDAO.Loginverify(user)) {
 		ERS_USERS_Model CurrentUser = UserDAO.Session(user);
-		req.getSession().setAttribute("Currentuser",CurrentUser);
+		req.getSession().setAttribute("currentUser",CurrentUser);
 		System.out.println(CurrentUser);
 		if(CurrentUser.getUSER_ROLE_ID()==1) {
 			myPath="/forwarding/home";

@@ -25,12 +25,16 @@ import Model.ERS_USER_ROLES_Model;
 public class Client  extends HttpServlet{
 	public static void AddingTicket (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		ERS_USERS_Model currentUser = (ERS_USERS_Model)req.getSession().getAttribute("loggedInUser");
-		ObjectMapper mapper = new ObjectMapper();
-		int amount= Integer.parseInt(req.getParameter("theAmount"));
-		String description= req.getParameter("theDescription");
-		int id= Integer.parseInt(req.getParameter("theId"));
-		ERS_REIMBURSEMENT_MODEL reim= new ERS_REIMBURSEMENT_MODEL(id,amount ,description);
-		System.out.println(reim);
+		ObjectMapper map = new ObjectMapper();
+
+        ERS_REIMBURSEMENT_MODEL reim = map.readValue(req.getInputStream(),ERS_REIMBURSEMENT_MODEL.class);
+        System.out.println(reim);
+		//ObjectMapper mapper = new ObjectMapper();
+		//int amount= Integer.parseInt(req.getParameter("theAmount"));
+		//String description= req.getParameter("theDescription");
+		//int id= Integer.parseInt(req.getParameter("theId"));
+		//ERS_REIMBURSEMENT_MODEL reim= new ERS_REIMBURSEMENT_MODEL(id,amount ,description);
+		//System.out.println(reim);
 		
 		ERS_REIMBURSEMENT_DAO.insertTicket(reim, currentUser);
 	
@@ -54,7 +58,7 @@ public class Client  extends HttpServlet{
 	}
 	public static void ShowEmployeeticket(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		List<ERS_REIMBURSEMENT_MODEL> listOfTickets = new ArrayList<>();
-		ERS_USERS_Model H= (ERS_USERS_Model)req.getSession().getAttribute("Currentuser");
+		ERS_USERS_Model H= (ERS_USERS_Model)req.getSession().getAttribute("currentUser");
 		
 		listOfTickets = T.EmployeeTcket(H);
 		System.out.println("it works");
@@ -93,11 +97,15 @@ public class Client  extends HttpServlet{
 	public static void updateTicket(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ERS_USERS_Model current = (ERS_USERS_Model)req.getSession().getAttribute("currentUser");
 		ObjectMapper map = new ObjectMapper();
-		int reimID= Integer.parseInt(req.getParameter("rEIM_ID"));
-		int statusID= Integer.parseInt(req.getParameter("rEIMB_STATUS_ID"));
-		
-		ERS_REIMBURSEMENT_MODEL H = new ERS_REIMBURSEMENT_MODEL(reimID,statusID);
+		//int reimID= Integer.parseInt(req.getParameter("rEIM_ID"));
+		//int statusID= Integer.parseInt(req.getParameter("rEIMB_STATUS_ID"));
+		if(current.equals(null)) {
+			System.out.println("it is null");
+		}
+	
+		ERS_REIMBURSEMENT_MODEL H = map.readValue(req.getInputStream(),ERS_REIMBURSEMENT_MODEL.class );
 		ERS_REIMBURSEMENT_DAO.updateTicket1(H, current);
 	}
+	
 }
 

@@ -14,9 +14,9 @@ import Model.ERS_USERS_Model;
 
 public class ERS_REIMBURSEMENT_DAO {
 
-	public static String url = "jdbc:postgresql://";
-	public static String username = "";
-	public static String password = "";
+	public static String url= "jdbc:postgresql://ramzy1.cyp5athagmcx.us-east-2.rds.amazonaws.com:5432/mydatabase";
+	public static String username= "ramzy1";
+	public static String password="p4ssw0rd";
 
 	public static boolean insertTicket(ERS_REIMBURSEMENT_MODEL reimb, ERS_USERS_Model user) {
 		Date sqlDate = new Date(0);
@@ -164,7 +164,7 @@ public class ERS_REIMBURSEMENT_DAO {
 
 	public static void updateTicket1(ERS_REIMBURSEMENT_MODEL reim, ERS_USERS_Model user) {
 		String SQL = "UPDATE ers_reimbursement SET reimb_resolved = CURRENT_TIMESTAMP, reimb_resolver = "
-				+ user.getUSER_ROLE_ID() + ", reimb_status_id = " + reim.getREIMB_STATUS_ID() + " WHERE reimb_id ="
+				+ user.getUSER_ROLE_ID() + ", reimb_status_id = " + reim.getREIMB_STATUS_ID() + " WHERE reim_id ="
 				+ reim.getREIM_ID();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement(SQL);
