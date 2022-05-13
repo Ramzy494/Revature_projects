@@ -3,11 +3,10 @@
 server:
   port: 9099
 spring:
-
   datasource:
-    url: jdbc:postgresql://ramzy1.cyp5athagmcx.us-east-2.rds.amazonaws.com:5432/Project2
-    username: ramzy1
-    password: p4ssw0rd
+    url: jdbc:postgresql://
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -15,14 +14,13 @@ spring:
     hibernate:
       ddl-auto: none
 
-
-# Code for setting up email capabilities through spring
-# Currently set for gmail, but we can change that or not, its whatever we wanna do.
+  # Code for setting up email capabilities through spring
+  # Currently set for gmail, but we can change that or not, its whatever we wanna do.
   mail:
     host: smtp.gmail.com
     port: 587
-    username: revaturesocial2@gmail.com
-    password: RevatureProject2
+    username:
+    password:
     protocol: smtp
     tls: true
     properties.mail.smtp:
@@ -31,10 +29,9 @@ spring:
       timeout: 5000
       starttls.enable: true
       ssl.trust: smtp.gmail.com
-    
 # Code for setting up email capabilities through spring
 # Currently set for gmail, but we can change that or not, its whatever we wanna do.
-      
+
 # This is an EXAMPLE of what DB we connect to.
 # We will need our own environment vars. - Fred
 #spring:
@@ -51,23 +48,23 @@ spring:
 
 # Handy notes below
 #      hbm2ddl.auto is a hibernate mapping to your ddl-schema.
-#      
+#
 #      What are settings for hbm2ddl.auto?
-#      
+#
 #      CREATE
 #      drops all existing tables (and other entities) with names you have provided in annotations
 #      then hibernate will create your schema from scratch.
 #      (THIS IS NOT PARTICULARLY GREAT FOR PRODUCTION!!! THIS is used for Dev purposes)
-#      
+#
 #      VALIDATE
 #      hibernate checks to make sure the schema exists as expected before operating
-#      
+#
 #      UPDATE
 #      hibernate will NOT delete anything, it'll only add/modify existing schema elements, so that
 #      the schema works with hibernate's schema
-#      
+#
 #      CREATE-DROP
 #      hibernate will create your schema then delete it when the application ends
-#      
+#
 #      NONE
 #      well...it means hibernate won't do anything to your schema automatically
