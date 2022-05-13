@@ -1,0 +1,112 @@
+package Model;
+
+import java.sql.Timestamp;
+
+public class ERS_REIMBURSEMENT_MODEL {
+	int REIM_ID;
+	  int REIMB_AMOUNT;
+	Timestamp REIMB_SUBMITTED;
+	Timestamp REIMB_RESOLVED;
+	String REIMB_DESCRIPTION;
+	static int REIMB_AUTHOR;
+	int REIMB_RESOLVER;
+	
+	
+	 public ERS_REIMBURSEMENT_MODEL(int rEIM_ID, int rEIMB_STATUS_ID) {
+		super();
+		REIM_ID = rEIM_ID;
+		REIMB_STATUS_ID = rEIMB_STATUS_ID;
+	}
+	int REIMB_STATUS_ID;
+	int REIMB_TYPE_ID;
+	
+	
+	 public ERS_REIMBURSEMENT_MODEL(int rEIM_ID, int rEIMB_AMOUNT, String rEIMB_DESCRIPTION) {
+		super();
+		REIM_ID = rEIM_ID;
+		REIMB_AMOUNT = rEIMB_AMOUNT;
+		REIMB_DESCRIPTION = rEIMB_DESCRIPTION;
+	}
+	
+	
+	
+	public ERS_REIMBURSEMENT_MODEL(int rEIM_ID, int rEIMB_AMOUNT, Timestamp rEIMB_SUBMITTED, Timestamp rEIMB_RESOLVED,
+			String rEIMB_DESCRIPTION, int rEIMB_AUTHOR, int rEIMB_RESOLVER, int rEIMB_STATUS_ID, int rEIMB_TYPE_ID) {
+		super();
+		REIM_ID = rEIM_ID;
+		REIMB_AMOUNT = rEIMB_AMOUNT;
+		REIMB_SUBMITTED = rEIMB_SUBMITTED;
+		REIMB_RESOLVED = rEIMB_RESOLVED;
+		REIMB_DESCRIPTION = rEIMB_DESCRIPTION;
+		REIMB_AUTHOR = rEIMB_AUTHOR;
+		REIMB_RESOLVER = rEIMB_RESOLVER;
+		REIMB_STATUS_ID = rEIMB_STATUS_ID;
+		REIMB_TYPE_ID = rEIMB_TYPE_ID;
+	}
+	
+	public ERS_REIMBURSEMENT_MODEL() {
+	
+	}
+	
+	public int getREIM_ID() {
+		return REIM_ID;
+	}
+	public void setREIM_ID(int rEIM_ID) {
+		REIM_ID = rEIM_ID;
+	}
+	public int getREIMB_AMOUNT() {
+		return REIMB_AMOUNT;
+	}
+	public void setREIMB_AMOUNT(int rEIMB_AMOUNT) {
+		REIMB_AMOUNT = rEIMB_AMOUNT;
+	}
+	public Timestamp getREIMB_SUBMITTED() {
+		return REIMB_SUBMITTED;
+	}
+	public void setREIMB_SUBMITTED(Timestamp rEIMB_SUBMITTED) {
+		REIMB_SUBMITTED = rEIMB_SUBMITTED;
+	}
+	public Timestamp getREIMB_RESOLVED() {
+		return REIMB_RESOLVED;
+	}
+	public void setREIMB_RESOLVED(Timestamp rEIMB_RESOLVED) {
+		REIMB_RESOLVED = rEIMB_RESOLVED;
+	}
+	public String getREIMB_DESCRIPTION() {
+		return REIMB_DESCRIPTION;
+	}
+	public void setREIMB_DESCRIPTION(String rEIMB_DESCRIPTION) {
+		REIMB_DESCRIPTION = rEIMB_DESCRIPTION;
+	}
+	public static int getREIMB_AUTHOR() {
+		return REIMB_AUTHOR;
+	}
+	public void setREIMB_AUTHOR(int rEIMB_AUTHOR) {
+		REIMB_AUTHOR = rEIMB_AUTHOR;
+	}
+	public int getREIMB_RESOLVER() {
+		return REIMB_RESOLVER;
+	}
+	public void setREIMB_RESOLVER(int rEIMB_RESOLVER) {
+		REIMB_RESOLVER = rEIMB_RESOLVER;
+	}
+	public int getREIMB_STATUS_ID() {
+		return REIMB_STATUS_ID;
+	}
+	public void setREIMB_STATUS_ID(int rEIMB_STATUS_ID) {
+		REIMB_STATUS_ID = rEIMB_STATUS_ID;
+	}
+	public int getREIMB_TYPE_ID() {
+		return REIMB_TYPE_ID;
+	}
+	public void setREIMB_TYPE_ID(int rEIMB_TYPE_ID) {
+		REIMB_TYPE_ID = rEIMB_TYPE_ID;
+	}
+	@Override
+	public String toString() {
+		return "ERS_REIMBURSEMENT_MODEL [REIM_ID=" + REIM_ID + ", REIMB_AMOUNT=" + REIMB_AMOUNT + ", REIMB_SUBMITTED="
+				+ REIMB_SUBMITTED + ", REIMB_RESOLVED=" + REIMB_RESOLVED + ", REIMB_DESCRIPTION=" + REIMB_DESCRIPTION
+				+ ", REIMB_AUTHOR=" + REIMB_AUTHOR + ", REIMB_RESOLVER=" + REIMB_RESOLVER + ", REIMB_STATUS_ID="
+				+ REIMB_STATUS_ID + ", REIMB_TYPE_ID=" + REIMB_TYPE_ID + "]";
+	}
+}
