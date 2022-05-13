@@ -14,9 +14,9 @@ import Model.ERS_USERS_Model;
 
 public class ERS_REIMBURSEMENT_DAO {
 
-	public static String url= "jdbc:postgresql://ramzy1.cyp5athagmcx.us-east-2.rds.amazonaws.com:5432/mydatabase";
-	public static String username= "ramzy1";
-	public static String password="p4ssw0rd";
+	public static String url= "jdbc:postgresql://";
+	public static String username= "";
+	public static String password="";
 
 	public static boolean insertTicket(ERS_REIMBURSEMENT_MODEL reimb, ERS_USERS_Model user) {
 		Date sqlDate = new Date(0);

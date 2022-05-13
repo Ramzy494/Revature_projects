@@ -29,12 +29,6 @@ public class Client  extends HttpServlet{
 
         ERS_REIMBURSEMENT_MODEL reim = map.readValue(req.getInputStream(),ERS_REIMBURSEMENT_MODEL.class);
         System.out.println(reim);
-		//ObjectMapper mapper = new ObjectMapper();
-		//int amount= Integer.parseInt(req.getParameter("theAmount"));
-		//String description= req.getParameter("theDescription");
-		//int id= Integer.parseInt(req.getParameter("theId"));
-		//ERS_REIMBURSEMENT_MODEL reim= new ERS_REIMBURSEMENT_MODEL(id,amount ,description);
-		//System.out.println(reim);
 		
 		ERS_REIMBURSEMENT_DAO.insertTicket(reim, currentUser);
 	
