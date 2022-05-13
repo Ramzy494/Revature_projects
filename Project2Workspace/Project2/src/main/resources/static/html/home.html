@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- End Bootstrap CSS -->
+</head>
+
+<body id="entireBody">
+    <nav class="navbar navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                Avatar Web Services (AWS)
+            </a>
+        </div>
+    </nav>
+    <!-- POST CONTAINER -->
+    <div class="d-flex flex-column align-items-center">
+        <!-- THIS IS WHERE WE PUT POSTS-->
+        <ul id="postContainer" class="list-group list-group-flush w-50">
+            <!-- This is a post example -->
+            <li id="postContainer+whateverThePostIdIs" class="list-group-item align-items-center text-center">
+                <div class="card d-flex mx-auto mb-2 mt-2" id="open + whateverThePostIdIs">
+                    <img class="card-img-top"
+                        src="https://i.pinimg.com/originals/7d/e5/03/7de503da9f70df23a54dd5f6dedeb6bd.jpg"
+                        alt="Card image cap OPTIONAL" id="postImg + whateverThePostIdIs">
+                    <h5 class="card-title" id="postUsername + whateverTheUserIdIs"><img src="" alt="[Profile Picture]"
+                            width="32" height="32">Aang</h5>
+                    <div class="card-body" id="body + whateverThePostIdIs">
+                        <p class="card-text" id="postText + whateverThePostIdIs">
+                            Yip yip!</p>
+                        <button id="postLike + whateverThePostIdIs" type="button" class="btn btn-primary float-end">Like
+                            0</button>
+                    <img class="card-img-top" src="" alt="Card image cap (OPTIONAL)" id="postImg + whateverThePostIdIs">
+                    <h5 class="card-title" id="postUsername + whateverTheUserIdIs"><img src="" alt="[Profile Picture]"
+                            id="postProfileImg + whateverThePosterIdIs">Aang</h5>
+                    <div class="card-body" id="body + whateverThePostIdIs">
+                        <p class="card-text" id="postText + whateverThePostIdIs">
+                            Yip yip!</p>
+                    </div>
+                </div>
+            </li>
+            <!-- END EXAMPLE POST -->
+            <!-- This is a post example -->
+            <li id="postContainer+whateverThePostIdIs" class="list-group-item align-items-center text-center">
+                <div class="card d-flex mx-auto mb-2 mt-2" id="open + whateverThePostIdIs">
+                    <img class="card-img-top" src="" alt="Card image cap (OPTIONAL)" id="postImg + whateverThePostIdIs">
+                    <!--save me-->
+                    <h5 class="card-title" id="postUsername + whateverTheUserIdIs"><img
+                            src="data:image/jpeg;base64,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"
+                            alt="[Profile Picture]" width="32" height="32"
+                            id="postProfileImg + whateverTheUserIdIs">TheLegend27</h5>
+                    <div class="card-body" id="body + whateverThePostIdIs">
+                        <p class="card-text" id="postText + whateverThePostIdIs">
+                            According to all known laws of aviation, there is no way that a bee should
+                            be able to fly. Its wings are too small to get its fat little body off the
+                            ground. The bee, of course, flies anyways. Because bees don't care what humans think
+                            is impossible.</p>
+                        <button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#commentsModal">Reply</button>
+                        <button id="postLike + whateverThePostIdIs" type="button" class="btn btn-primary float-end">Like
+                            0</button>
+                    </div>
+                </div>
+            </li>
+            <!-- END EXAMPLE POST -->
+            <!-- And YES, this handles many posts and generates a scrollbar! :D -->
+        </ul>
+        <!-- END OF POST CONTAINER -->
+    </div>
+    <!-- PAGINATION EXAMPLE -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-lg justify-content-center" id="paginationContainer">
+            <!-- THIS WILL LATER BE HANDLED BY JS -->
+            <li class="page-item disabled" id="paginationPrev">
+                <a class="page-link" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item page-item active" id="paginationOne">
+                <a class="page-link">1</a>
+            </li>
+            <li class="page-item" id="paginationPlusOne">
+                <a class="page-link">2</a>
+            </li>
+            <li class="page-item" id="paginationPlusTwo">
+                <a class="page-link">3</a>
+            </li>
+            <li class="page-item" id="paginationNext">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                <div class="modal-body">
+                    <!-- THIS IS WHERE THE COMMENT CARDS ACTUALLY GO -->
+                    <div id="commentsContainer">
+                        <!-- Example -->
+                        <div class="card justify-content-center mb-2 mt-2 text-center container w-80">
+                            <img class="card-img-top" src="" alt="Card image cap OPTIONAL"
+                                id="commentImg + whateverTheCommentIdIs">
+                            <h5 class="card-title" id="commentUsername + whateverTheUserIdIs"><img src=""
+                                    alt="[Profile Picture]">Zuko</h5>
+                            <div class="card-body" id="commentBody + whateverTheCommentIdIs">
+                                <p class="card-text" id="commentText + whateverTheCommentIdIs">
+                                    I will find my honor!</p>
+                                <button id="commentLike + whateverTheCommentIdIs" type="button"
+                                    class="btn btn-primary float-end">Like 0</button>
+                            </div>
+                        </div>
+                        <!-- End Example -->
+
+                        <!-- Example -->
+                        <div class="card justify-content-center mb-2 mt-2 text-center container w-80">
+                            <h5 class="card-title" id="commentUsername + whateverTheUserIdIs"><img src=""
+                                    alt="[Profile Picture]"">Katara</h5>
+                            <div class=" card-body" id="commentBody + whateverTheCommentIdIs">
+                                <p class="card-text" id="commentText + whateverTheCommentIdIs">
+                                    Never gonna give you up.
+                                    Never gonna let you down.
+                                    Never gonna run around and desert you.
+                                    Never gonna make you cry.
+                                    Never gonna say goodbye.
+                                    Never gonna tell a lie and hurt you.</p>
+                                <button id="commentLike + whateverTheCommentIdIs" type="button"
+                                    class="btn btn-primary float-end">Like 0</button>
+                        </div>
+                    </div>
+                    <!-- End Example -->
+                    <!-- This scrolls too! -->
+                </div>
+                <!-- End of comments container -->
+                <div class="modal-footer">
+                    <input id="commentInput" type="text" maxlength="150">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="postReply" type="button" class="btn btn-primary">Reply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script type="module" src="/Project2/src/main/resources/static/js/home.js"></script>
+    <!-- End Bootstrap -->
+</body>
+
+</html>

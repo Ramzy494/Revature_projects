@@ -1,0 +1,41 @@
+# I am unsure of what others think of yaml,
+# I think it's more compact and nice. -Fred
+server:
+  port: 2005
+
+# This is an EXAMPLE of what DB we connect to.
+# We will need our own environment vars. - Fred
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://${TRAINING_DB_ENDPOINT}/foodSpringData
+#    username: ${TRAINING_DB_USERNAME}
+#    password: ${TRAINING_DB_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+
+# Handy notes below
+#      hbm2ddl.auto is a hibernate mapping to your ddl-schema.
+#      
+#      What are settings for hbm2ddl.auto?
+#      
+#      CREATE
+#      drops all existing tables (and other entities) with names you have provided in annotations
+#      then hibernate will create your schema from scratch.
+#      (THIS IS NOT PARTICULARLY GREAT FOR PRODUCTION!!! THIS is used for Dev purposes)
+#      
+#      VALIDATE
+#      hibernate checks to make sure the schema exists as expected before operating
+#      
+#      UPDATE
+#      hibernate will NOT delete anything, it'll only add/modify existing schema elements, so that
+#      the schema works with hibernate's schema
+#      
+#      CREATE-DROP
+#      hibernate will create your schema then delete it when the application ends
+#      
+#      NONE
+#      well...it means hibernate won't do anything to your schema automatically
