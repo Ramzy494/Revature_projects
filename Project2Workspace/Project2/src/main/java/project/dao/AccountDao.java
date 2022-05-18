@@ -1,6 +1,8 @@
 package project.dao;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.stereotype.Repository;
 
 import project.model.AccountModel;
@@ -8,9 +10,31 @@ import project.model.AccountModel;
 @Repository
 public interface AccountDao extends JpaRepository<AccountModel, Integer>{
 
+	/**
+	 * Retrieves a user object by a given username.
+	 * @param user
+	 * @return
+	 */
 	public AccountModel findByUsername(String user);
-	// This essentially gets all account info based on the email and stores/returns it as an object
-	// In Sql this read SELECT * FROM account WHERE account_email = email;
+	
+	/**
+	 * This essentially gets all account info based on the email and stores/returns it as an object
+	 * In Sql this read SELECT * FROM account WHERE account_email = email;
+	 * @param email
+	 * @return
+	 */
 	public AccountModel findByEmail(String email);
 	
+	/**
+	 * Retrieves a user object by a given account id.
+	 * @param id
+	 * @return
+	 */
+	@EntityGraph(value = "AccountModel.posts", type = EntityGraphType.FETCH)
+	AccountModel findByAccountId(int id);
+	
+	 
+	
+	
+
 }

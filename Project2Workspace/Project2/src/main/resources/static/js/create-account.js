@@ -25,9 +25,12 @@ function submit(){
         document.getElementById("username").value.length != 0 &&
         document.getElementById("password").value.length != 0 &&
         document.getElementById("passwordTwo").value.length != 0){
-            console.log("inside first if")
-            if(document.getElementById("password").value==document.getElementById("passwordTwo").value){
-                console.log("inside 2nd if")
+
+            let input = document.getElementById("email").value
+            let symbol = "@"
+
+            if(document.getElementById("password").value==document.getElementById("passwordTwo").value && input.includes(symbol)){
+
                buttonEnabler();
             }
         // submit();

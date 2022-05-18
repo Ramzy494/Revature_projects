@@ -5,22 +5,27 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://
-    username:
-    password:
+    username: 
+    password: 
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration 
 
-  # Code for setting up email capabilities through spring
-  # Currently set for gmail, but we can change that or not, its whatever we wanna do.
+# Code for setting up email capabilities through spring
+# Currently set for gmail, but we can change that or not, its whatever we wanna do.
   mail:
     host: smtp.gmail.com
     port: 587
-    username:
-    password:
+    username: revaturesocial2@gmail.com
+    password: RevatureProject2
     protocol: smtp
     tls: true
     properties.mail.smtp:
@@ -29,9 +34,29 @@ spring:
       timeout: 5000
       starttls.enable: true
       ssl.trust: smtp.gmail.com
+      
+document:
+  bucket-name: avatarimages2005
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: 
+      secret-key: 
+      
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+       
+    
 # Code for setting up email capabilities through spring
 # Currently set for gmail, but we can change that or not, its whatever we wanna do.
-
+      
 # This is an EXAMPLE of what DB we connect to.
 # We will need our own environment vars. - Fred
 #spring:
@@ -48,23 +73,23 @@ spring:
 
 # Handy notes below
 #      hbm2ddl.auto is a hibernate mapping to your ddl-schema.
-#
+#      
 #      What are settings for hbm2ddl.auto?
-#
+#      
 #      CREATE
 #      drops all existing tables (and other entities) with names you have provided in annotations
 #      then hibernate will create your schema from scratch.
 #      (THIS IS NOT PARTICULARLY GREAT FOR PRODUCTION!!! THIS is used for Dev purposes)
-#
+#      
 #      VALIDATE
 #      hibernate checks to make sure the schema exists as expected before operating
-#
+#      
 #      UPDATE
 #      hibernate will NOT delete anything, it'll only add/modify existing schema elements, so that
 #      the schema works with hibernate's schema
-#
+#      
 #      CREATE-DROP
 #      hibernate will create your schema then delete it when the application ends
-#
+#      
 #      NONE
 #      well...it means hibernate won't do anything to your schema automatically

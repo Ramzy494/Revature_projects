@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
 	@GetMapping("/")
+	/**
+	 * Controller that sets the index of a call to "/" to go to the login page
+	 * 
+	 */
 	public String index() {
 		return "redirect:/html/login.html";
 	}

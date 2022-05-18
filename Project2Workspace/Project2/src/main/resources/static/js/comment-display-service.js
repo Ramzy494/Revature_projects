@@ -21,10 +21,16 @@ export class CommentDisplayService {
         let newCommentProfilePic = document.createElement("img"); // image element within h5
         let newCommentBody = document.createElement("div"); // div that is card body
         let newCommentBodyText = document.createElement("p"); // <p> that is text content
-        let newCommentLikes = document.createElement("button");
+        // let newCommentLikes = document.createElement("button");
         let commentHasImage = false;
-        let ourPostReply = document.getElementById("postReply");
-        ourPostReply.addEventListener('click', function () { this.commentService.replyToPost(postId); });
+        let postReplyContainer = document.getElementById("postReply");
+        postReplyContainer.innerHTML = "";
+        let newPostReply = document.createElement("button");
+        newPostReply.type = "button";
+        newPostReply.className = "btn btn-primary";
+        newPostReply.innerText = "Reply"
+        newPostReply.addEventListener('click', function () { new CommentGetService().replyToPost(postId); });
+        postReplyContainer.appendChild(newPostReply);
 
         // for each value...
         if ((this.comments) && !(this.comments.length === 0)) {
@@ -44,7 +50,7 @@ export class CommentDisplayService {
                 }
             });
         } else {
-            ourCommentContainer.innerText = "No comments to display.";
+            ourCommentContainer.innerText = "No comments yet. Add one below!";
         }
 
         /**
@@ -61,7 +67,7 @@ export class CommentDisplayService {
             newCommentProfilePic = document.createElement("img"); // image element within h5
             newCommentBody = document.createElement("div"); // div that is card body
             newCommentBodyText = document.createElement("p"); // <p> that is text content
-            newCommentLikes = document.createElement("button");
+            // newCommentLikes = document.createElement("button");
 
             // initialize the attribute values
             newComment.className = "list-group-item align-items-center text-center";
@@ -76,8 +82,8 @@ export class CommentDisplayService {
             newCommentProfilePic.height = "32";
             newCommentBody.class = "card-body";
             newCommentBodyText.class = "card-text";
-            newCommentLikes.className = "btn btn-primary float-end";
-            newCommentLikes.type = "button";
+            // newCommentLikes.className = "btn btn-primary float-end";
+            // newCommentLikes.type = "button";
         }
 
         /**
@@ -98,19 +104,22 @@ export class CommentDisplayService {
             newCommentUsername.id = "commentUsername" + commentObj.commentId;
             newCommentBody.id = "commentBody" + commentObj.commentId;
             newCommentBodyText.id = "commentText" + commentObj.commentId;
-            newCommentLikes.id = "commentLike" + commentObj.commentId;
+            // newCommentLikes.id = "commentLike" + commentObj.commentId;
 
             // Now add the content itself
             if (commentHasImage) {
                 newCommentImgHead.id = "commentImg" + commentObj.commentImage;
             }
-            if(commentObj.accountImage)
-                newCommentProfilePic.src = commentObj.accountImage;
+            if (commentObj.accountImage) {
+                newCommentProfilePic.src = "/s3img/" + commentObj.accountImage;
+            } else {
+                newCommentProfilePic.src = "../img/default-pfp.jpg";
+            }
             newCommentUsername.appendChild(newCommentProfilePic);
             newCommentUsername.insertAdjacentText('beforeend', commentObj.username);
             newCommentBodyText.innerText = commentObj.commentMessage;
-            newCommentLikes.innerText = "Like " + commentObj.numOfLikes;
-            newCommentLikes.addEventListener('click', function () { new CommentDisplayService().likeCommentById(commentObj.commentId); });
+            // newCommentLikes.innerText = "Like " + commentObj.numOfLikes;
+            // newCommentLikes.addEventListener('click', function () { new CommentDisplayService().likeCommentById(commentObj.commentId); });
         }
 
         function appendChildren() {
@@ -136,43 +145,39 @@ export class CommentDisplayService {
             }
             newCommentCard.appendChild(newCommentUsername);
             newCommentBody.appendChild(newCommentBodyText);
-            newCommentBody.appendChild(newCommentLikes);
+            // newCommentBody.appendChild(newCommentLikes);
             newCommentCard.appendChild(newCommentBody);
             newComment.appendChild(newCommentCard);
             ourCommentContainer.appendChild(newComment);
         }
     }
 
+    // likeCommentById(id) {
+    //      let xhttp = new XMLHttpRequest();
 
-    likeCommentById(id) {
-        let comment = JSON.parse(`{"commentId":1,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":3,"commentImage":"","accountId":4,"username":"Agent 47","accountImage":null}`);
-        this.likeComment(comment);
+    //      xhttp.onreadystatechange = function () {
+    //           console.log("readyState is changing: ", xhttp.readyState);
+    //          if (xhttp.readyState == 4 && xhttp.status == 200) {
+    //               console.log(xhttp.responseText);
+    //              this.comment = JSON.parse(xhttp.responseText);
+    //              console.log("This is our response from likeCommentByPage: " + respObj)
+    //              this.likeComment(comment);
+    //          }
+    //      }
 
-         let xhttp = new XMLHttpRequest();
+    //      xhttp.open('POST', `http://domain:port/likeCommentById/${id}`);
+    //      xhttp.send();
+    // }
 
-         xhttp.onreadystatechange = function () {
-              console.log("readyState is changing: ", xhttp.readyState);
-             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                  console.log(xhttp.responseText);
-                 this.comments = JSON.parse(xhttp.responseText);
-                 console.log("This is our response from likeCommentByPage: " + respObj)
-                 likeComment();
-             }
-         }
+    // likeComment(comment) {
+    //     // for each value...There should only be one
+    //     console.log(comment);
 
-         xhttp.open('POST', `http://domain:port/likeCommentById`);
-         xhttp.send(id);
-    }
-
-    likeComment(comment) {
-        // for each value...There should only be one
-        console.log(comment);
-
-        // take that object and update the contents (as in just the like amount)
-        if (comment.commentId) {
-            let newCommentLikes = document.getElementById("commentLike" + comment.commentId);
-            newCommentLikes.innerText = "Like " + comment.numOfLikes;
-        }
-    }
+    //     // take that object and update the contents (as in just the like amount)
+    //     if (comment.commentId) {
+    //         let newCommentLikes = document.getElementById("commentLike" + comment.commentId);
+    //         newCommentLikes.innerText = "Like " + comment.numOfLikes;
+    //     }
+    // }
 }
 

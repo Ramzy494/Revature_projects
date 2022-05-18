@@ -12,7 +12,9 @@ export class CommentGetService {
     displayComments(postId, ourObjectFromJSON) {
         let commentService = new CommentDisplayService();
         commentService.comments = ourObjectFromJSON;
-        commentService.displayComments(postId);
+        if (commentService.comments) {
+            commentService.displayComments(postId);
+        }
     }
 
     likeComment(id) {
@@ -30,48 +32,48 @@ export class CommentGetService {
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
-             console.log("readyState is changing: ", xhttp.readyState);
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                 console.log(xhttp.responseText);
+            console.log("readyState is changing: ", xhttp.readyState);
+            if (xhttp.readyState == 4 && xhttp.status == 201) {
+                console.log(xhttp.responseText);
                 let respObj = JSON.parse(xhttp.responseText);
-                console.log("This is our response from insertComment: " + respObj)
-                displayComments(respObj);
+                console.log("This is our response from insertComment: " + respObj);
+                new CommentGetService().getCommentsByPost(postId);
             }
         }
 
         // Data will be ObjectMapped into a CommentModel
         let data = {
-            commentMessage:message,
-            postId:postId
+            commentMessage: message,
+            post: {
+                postId: postId
+            }
         }
 
-        xhttp.open('comment', `http://domain:port/insertComment`);
-        xhttp.send(data);
+        xhttp.open('POST', `http://54.86.185.172:9099/insertComment`);
+        xhttp.setRequestHeader("content-type", "application/json");
+        xhttp.send(JSON.stringify(data));
     }
 
     /**
     * Request: An integer of the current page
     * Response: An array of Page objects (should be length 5)
     */
-    getCommentsByPost(postId) {
-        let respObj = JSON.parse(
-            '[{"commentId":1,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":2,"commentImage":"","accountId":4,"username":"Agent 47","accountImage":null},{"commentId":2,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":4,"commentImage":"","accountId":5,"username":"Gust Man","accountImage":null},{"commentId":3,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":2,"commentImage":null,"accountId":4,"username":"Agent 47","accountImage":null},{"commentId":4,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":3,"commentImage":"","accountId":4,"username":"Agent 47","accountImage":""},{"commentId":5,"commentMessage":"Super fighting robot. MEGA MAN!","numOfLikes":2,"commentImage":"","accountId":4,"username":"Agent 47","accountImage":""}]');
-        this.displayComments(postId, respObj);
+    getCommentsByPost(id) {
+        let xhttp = new XMLHttpRequest();
 
-         let xhttp = new XMLHttpRequest();
-
-         xhttp.onreadystatechange = function () {
-              console.log("readyState is changing: ", xhttp.readyState);
+        xhttp.onreadystatechange = function () {
+            console.log("readyState is changing: ", xhttp.readyState);
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                  console.log(xhttp.responseText);
-                 let respObj = JSON.parse(xhttp.responseText);
-                 console.log("This is our response from getCommentsByPage: " + respObj)
-                 displayComments(respObj);
-             }
-         }
-
-         xhttp.open('comment', `http://domain:port/getCommentsByPost`);
-         xhttp.send(postId);
+                console.log(xhttp.responseText);
+                let respObj = JSON.parse(xhttp.responseText);
+                console.log("This is our response from getCommentsByPost: " + respObj)
+                let commentService = new CommentDisplayService();
+                commentService.comments = respObj;
+                commentService.displayComments(id);
+            }
+        }
+        xhttp.open('GET', `http://54.86.185.172:9099/getCommentsByPost/${id}`);
+        xhttp.send();
     }
 
     /**
@@ -89,9 +91,15 @@ export class CommentGetService {
      * Reply to a post (insert comment)
      */
     replyToPost(id) {
-        this.insertComment(id, document.getElementById("commentInput").value);
-        this.displayComments(id);
+        if (document.getElementById("commentInput").value) {
+            document.getElementById('commentInput').style.borderColor = "none";
+            document.getElementById('commentInput').placeholder = ""
+            this.insertComment(id, document.getElementById("commentInput").value);
+        } else {
+            document.getElementById('commentInput').style.borderColor = "red";
+            document.getElementById('commentInput').placeholder = "Please input a comment."
+            console.log("No comment text.");
+        }
     }
 }
-
 

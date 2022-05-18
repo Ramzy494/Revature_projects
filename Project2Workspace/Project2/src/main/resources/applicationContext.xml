@@ -10,5 +10,6 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 <bean name="encoder" class="org.springframework.security.crypto.password.Pbkdf2PasswordEncoder"/>
+<bean name="redirectStrategy" class="org.springframework.security.web.DefaultRedirectStrategy"/>
 
 </beans>

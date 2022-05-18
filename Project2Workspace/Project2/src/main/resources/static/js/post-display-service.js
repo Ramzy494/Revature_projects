@@ -6,6 +6,7 @@
 
 import { CommentGetService } from './comment-get-service.js';
 
+
 export class PostDisplayService {
     constructor() {
         this.posts = [];
@@ -14,10 +15,7 @@ export class PostDisplayService {
 
     displayPosts() {
         let ourPostContainer = document.getElementById("postContainer");
-        // Makes it smol for some reason.
-        // Top image has nothing to do with it.
-        // The HTML APPEARS to be the same class...
-        // There are striped lines with this on though.
+
         ourPostContainer.innerHTML = "";
         let newPost = document.createElement("li");
         let newPostCard = document.createElement("div");
@@ -29,11 +27,12 @@ export class PostDisplayService {
         let newPostReply = document.createElement("button");
         let newPostLikes = document.createElement("button");
         let postHasImage = false;
+    
 
         // for each value...
         if ((this.posts) && !(this.posts.length === 0)) {
             Object.values(this.posts).forEach(postObj => {
-                console.log(postObj);
+                //console.log(postObj);
 
                 // take that object and dynamically make a card per post object
                 if (postObj.postId) {
@@ -110,10 +109,13 @@ export class PostDisplayService {
 
             // Now add the content itself
             if (postHasImage) {
-                newPostImgHead.id = "postImg" + postObj.postImage;
+                newPostImgHead.src = "/s3img/" + postObj.postImage;
             }
-            if(postObj.accountImage)
-                newPostProfilePic.src = postObj.accountImage;
+            if (postObj.accountImage) {
+                newPostProfilePic.src = "/s3img/" + postObj.accountImage;
+            } else {
+                newPostProfilePic.src = "../img/default-pfp.jpg";
+            }
             newPostUsername.appendChild(newPostProfilePic);
             newPostUsername.insertAdjacentText('beforeend', postObj.username);
             newPostBodyText.innerText = postObj.postMessage;
@@ -139,26 +141,24 @@ export class PostDisplayService {
 
     /**
      * Passes an ID.
-     * Response is an array of posts with only one post.
+     * Response is a single post.
      * @param {number} id 
      */
     likePostById(id) {
-        let post = JSON.parse(`{"postId":2,"postMessage":"Super fighting robot. MEGA MAN!","numOfLikes":5,"postImage":"","accountId":4,"username":"Agent 47","accountImage":null}`);
-        this.likePost(post)
-         let xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
 
-         xhttp.onreadystatechange = function () {
-              console.log("readyState is changing: ", xhttp.readyState);
-             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                  console.log(xhttp.responseText);
-                 post = JSON.parse(xhttp.responseText);
-                 console.log("This is our response from likePostById: " + respObj)
-                 likePost(post);
-             }
-         }
+        xhttp.onreadystatechange = function () {
+            console.log("readyState is changing: ", xhttp.readyState);
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                console.log(xhttp.responseText);
+                let post = JSON.parse(xhttp.responseText);
+                console.log("This is our response from likePostById: " + post)
+                new PostDisplayService().likePost(post);
+            }
+        }
 
-         xhttp.open('POST', `http://domain:port/likePostById`);
-         xhttp.send(id);
+        xhttp.open('POST', `http://54.86.185.172:9099/likePostById/${id}`);
+        xhttp.send();
     }
 
     likePost(post) {

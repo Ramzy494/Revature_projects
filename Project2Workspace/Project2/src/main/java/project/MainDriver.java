@@ -8,6 +8,10 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource({"classpath*:applicationContext.xml"})
 public class MainDriver {
 
+	/**
+	 * Main Driver that makes application run as a Spring Boot application
+	 * 
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(MainDriver.class, args);
 	}

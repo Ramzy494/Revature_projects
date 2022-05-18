@@ -34,12 +34,13 @@ public class EmailService {
 	 */
 	
 	public void sendMessage(String to) {
-		System.out.println(to);
+		
 		String randomPassword = random.generateRandomPassword();
-		System.out.println(randomPassword);
+		
 		String encodedRandomPassword = encoder.encode(randomPassword);
-		System.out.println(encodedRandomPassword);
+		
 		AccountModel passwordResetUser = dao.findByEmail(to);
+		
 		passwordResetUser.setPassword(encodedRandomPassword);
 		
 		dao.save(passwordResetUser);
