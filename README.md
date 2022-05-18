@@ -52,7 +52,7 @@ Technologies used:
 Features:
 - Users are able to register an account and login
 - Users are able to post, make comments, and like comments
-- Users are able to edit their profile first,last name, and profile picture 
+- Users are able to edit their profile's first name,last name, and profile picture 
 - Users are able to log out
 - Users can get a email to reset their password if they forget it and log back in. 
 
